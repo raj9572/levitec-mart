@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import connectDB from './db/index.js'
+import bodyParser from 'body-parser'
 const app = express()
 const port = process.env.PORT || 4000
 dotenv.config();
@@ -13,6 +14,7 @@ app.use(cors({
 
 
 app.use(express.json())
+app.use(bodyParser.json());
 
 
 
