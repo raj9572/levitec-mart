@@ -4,7 +4,7 @@ import { KEY_ACCESS_TOKEN, getItem } from './localStorageManagement';
 
 
 export const axiosClient = axios.create({
-    baseURL: 'http://localhost:4000',
+    baseURL: 'https://levitec-mart-server.vercel.app',
     withCredentials: true,
   });
 

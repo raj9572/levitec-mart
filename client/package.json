@@ -1,7 +1,7 @@
 {
   "name": "client",
   "private": true,
-  "proxy":"http://localhost:4000",
+  "proxy":"https://levitec-mart-server.vercel.app",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
