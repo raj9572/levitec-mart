@@ -7,7 +7,7 @@ const port = process.env.PORT || 4000
 dotenv.config();
 
 app.use(cors({
-    origin: ["http://localhost:5173"],
+    origin: ["https://levitec-mart.vercel.app"],
     credentials: true
 }))
 
