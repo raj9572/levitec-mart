@@ -9,8 +9,9 @@
   ## for server setup
   1. open the new terminal
   2. go to server folder
-  3.  run command "npm install" for  install all the package in nodemodules
-  4. run command "npm run dev" for run the server 
+  3. create the .env file in root folder and paste the data of file ".env.sample" which is available in root folder as file
+  4.  run command "npm install" for  install all the package in nodemodules
+  5. run command "npm run dev" for run the server 
 
 
 # Features of the application
@@ -37,6 +38,7 @@
  3.cors  --- which is user for allow the origin to send the data to the server 
  4. mongoose ---  which is used for fetch , create and many other operation for the data of user or products
  5.puppeteer  -- which is used for generating the dynamic data into the pdfs file 
+ 6.dotenv -- for secure the sensitive data from the other person who can use this as misuse 
 
 # Some important things
 1. we do not use protected route because we do not need in requirement
