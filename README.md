@@ -1,5 +1,5 @@
 # for setup the project and run the application
-  first you have to clone  the repository of  "first-commit" from the github.. after clone you have see folder levitec-mart in which the client and server folder exist
+  first you have to copy the code  the repository of  "first-commit" from the github.. after clone you have see folder levitec-mart in which the client and server folder exist
   ## for client setup
   1. go to client folder
   2. open the terminal and run command "npm install" for  install all the package in nodemodules
