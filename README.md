@@ -45,3 +45,6 @@
 2. for the backend we use js because i never do work backend in ts...i know it is very simple bt i never worked.. if we need to work backend in ts then i can learn within 5-6 days..
 3. i do not have much good in typescript bt i try to do my best...
 4. some where i used chatgpt and google for resolving the error and help to understand the process
+
+## Note 
+# the Invoice is not getting downloaded in production environment ... i will try to fix this issue later
