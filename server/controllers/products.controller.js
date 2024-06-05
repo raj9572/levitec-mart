@@ -1,7 +1,7 @@
 import { ErrorResponse, SucessResponse } from "../Utils/ApiResponse.js"
 import Invoice from "../models/Invoice.js";
 import Product from "../models/Product.js"
-import PuppeteerHTMLPDF from "puppeteer-html-pdf";
+import chromium from "chrome-aws-lambda";
 
 
 const fetchAllProducts = async(req,res) =>{
@@ -20,12 +20,7 @@ const fetchAllProducts = async(req,res) =>{
 
 const downloadInvoice = async(req,res) =>{
 
-  const htmlPDF = new PuppeteerHTMLPDF();
-  const options = {
-    format: "A4",
-    printBackground:true 
-  };
-  htmlPDF.setOptions(options);
+    let browser
    
 
     try {
@@ -64,7 +59,15 @@ const downloadInvoice = async(req,res) =>{
 
 
 
-      
+         browser = await chromium.puppeteer.launch({
+          args: chromium.args,
+          defaultViewport: chromium.defaultViewport,
+          executablePath: await chromium.executablePath,
+          headless: chromium.headless,
+          ignoreHTTPSErrors: true,
+        });
+
+         const page = await browser.newPage();
     
         // Calculate totals
         const subtotal = invoiceData.products.reduce((sum, product) => sum + (product.quantity * product.price), 0);
@@ -205,15 +208,28 @@ const downloadInvoice = async(req,res) =>{
         </html>
         `;
     
-          const pdfBuffer = await htmlPDF.create(invoiceHtml, { asBuffer: true });
-          res.set({
-            'Content-Type': 'application/pdf',
-            'Content-Disposition': 'attachment; filename=sample.pdf',
-          });
-          res.send(pdfBuffer);
+        // Set the content with a longer timeout
+    await page.setContent(invoiceHtml, { waitUntil: 'networkidle0', timeout: 60000 });
+
+    // Generate PDF
+    const pdfBuffer = await page.pdf({ format: 'A4' });
+
+    await browser.close();
+
+    // Set response headers
+    res.set({
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': 'attachment; filename="invoice.pdf"',
+      'Content-Length': pdfBuffer.length
+    });
+
+    // Send PDF
+    res.send(pdfBuffer);
+        
+
         
     } catch (error) {
-      
+      if (browser) await browser.close();
         return res.status(500)
         .json(ErrorResponse(500, error.message || "interner server error"))
     }
