@@ -14,7 +14,6 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "chrome-aws-lambda": "^10.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
@@ -22,7 +21,7 @@
     "mongodb": "^6.7.0",
     "mongoose": "^8.4.1",
     "nodemon": "^3.1.2",
-    "puppeteer-core": "^22.10.0",
+    "puppeteer-html-pdf": "^4.0.8",
     "validator": "^13.12.0"
   }
 }
